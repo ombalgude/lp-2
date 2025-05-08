@@ -1,0 +1,16 @@
+from Crypto.Cipher import DES
+
+def pad(text):
+    while len(text) % 8 != 0:
+        text += b'\0'
+    return text
+
+key = b'hello123'  # 8 bytes key
+text1 = b'Python is the Best Language!'
+
+des = DES.new(key, DES.MODE_ECB)
+padded_text = pad(text1)
+encrypted_text = des.encrypt(padded_text)
+
+print("Encrypted:", encrypted_text)
+print("Decrypted:", des.decrypt(encrypted_text).rstrip(b'\0'))

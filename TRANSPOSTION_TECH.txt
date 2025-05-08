@@ -1,0 +1,30 @@
+import math
+
+plaintext = "transposition technique using python"
+key = 8
+
+# Encryption
+ciphertext = [''] * key
+for col in range(key):
+    pointer = col
+    while pointer < len(plaintext):
+        ciphertext[col] += plaintext[pointer]
+        pointer += key
+cipher = ''.join(ciphertext)
+print("Encrypted:", cipher)
+
+# Decryption
+nC = math.ceil(len(cipher) / key)
+nR = key
+numOfShadedBoxes = (nC * nR) - len(cipher)
+pt = [''] * nC
+col = row = 0
+
+for sym in cipher:
+    pt[col] += sym
+    col += 1
+    if (col == nC) or (col == nC - 1 and row >= nR - numOfShadedBoxes):
+        col = 0
+        row += 1
+
+print("Decrypted:", ''.join(pt))

@@ -1,0 +1,13 @@
+# Initialize the string
+s = "HelloWorld"
+
+# Print headers
+print(f"{'Char':<6}{'ASCII':<8}{'AND 127':<10}{'XOR 127':<10}")
+print("-" * 34)
+
+# Iterate through each character in the string
+for ch in s:
+    ascii_val = ord(ch)
+    and_val = ascii_val & 127
+    xor_val = ascii_val ^ 127
+    print(f"{ch:<6}{ascii_val:<8}{and_val:<10}{xor_val:<10}")

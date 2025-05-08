@@ -1,0 +1,28 @@
+// Java Code for Diffie Hellman Key Exchange
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class DiffieHellman {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter prime number p: ");
+        BigInteger p = sc.nextBigInteger();
+        System.out.print("Enter primitive root g: ");
+        BigInteger g = sc.nextBigInteger();
+
+        System.out.print("Enter private key for A: ");
+        BigInteger a = sc.nextBigInteger();
+        System.out.print("Enter private key for B: ");
+        BigInteger b = sc.nextBigInteger();
+
+        BigInteger A = g.modPow(a, p); // g^a mod p
+        BigInteger B = g.modPow(b, p); // g^b mod p
+
+        BigInteger keyA = B.modPow(a, p); // (g^b)^a mod p
+        BigInteger keyB = A.modPow(b, p); // (g^a)^b mod p
+
+        System.out.println("Shared secret key for A: " + keyA);
+        System.out.println("Shared secret key for B: " + keyB);
+        sc.close();
+    }
+}
